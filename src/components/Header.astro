@@ -1,0 +1,136 @@
+---
+// Header - Navegación principal con anclas y CTA
+// Fixed, transparente en hero, con fondo al scroll
+
+const navLinks = [
+  { label: "Cómo funciona", href: "#concepto" },
+  { label: "Producto", href: "#producto" },
+  { label: "Comparativa", href: "#comparativa" },
+  { label: "Rendimiento", href: "#rendimiento" },
+  { label: "Testimonios", href: "#testimonios" },
+];
+---
+
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6">
+    <nav class="flex items-center justify-between h-16 lg:h-20">
+      
+      <!-- Logo -->
+      <a href="/" class="text-xl font-bold hover:opacity-80 transition-opacity">
+        <span class="text-cyan">Hydro</span><span class="text-white">Charger</span>
+      </a>
+
+      <!-- Nav Links - Desktop -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA + Mobile Menu -->
+      <div class="flex items-center gap-4">
+        <!-- CTA Desktop -->
+        <a 
+          href="https://swi-tec.com/es/producto/hidrogenerador-universal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-cyan hover:bg-cyan-light text-dark font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5"
+        >
+          Comprar
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button 
+          id="menuBtn"
+          class="lg:hidden p-2 text-white hover:text-cyan transition-colors"
+          aria-label="Menú"
+        >
+          <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-dark/95 backdrop-blur-lg border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class="block text-lg font-medium text-gray-300 hover:text-cyan transition-colors py-2"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a 
+        href="https://swi-tec.com/es/producto/hidrogenerador-universal/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full text-center px-5 py-3 bg-cyan hover:bg-cyan-light text-dark font-semibold rounded-lg transition-colors mt-4"
+      >
+        Comprar ahora
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  // Cambiar fondo del header al hacer scroll
+  function updateHeader() {
+    if (window.scrollY > 50) {
+      header?.classList.add('bg-dark/90', 'backdrop-blur-lg', 'border-b', 'border-gray-800/50');
+    } else {
+      header?.classList.remove('bg-dark/90', 'backdrop-blur-lg', 'border-b', 'border-gray-800/50');
+    }
+  }
+
+  // Toggle menú móvil
+  function toggleMenu() {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  }
+
+  // Cerrar menú al hacer click en un link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+
+  window.addEventListener('scroll', updateHeader);
+  menuBtn?.addEventListener('click', toggleMenu);
+  
+  // Inicializar
+  updateHeader();
+</script>
+
+<style>
+  /* Transición suave para el fondo */
+  #header {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  }
+</style>
+

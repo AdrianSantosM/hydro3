@@ -1,0 +1,93 @@
+---
+// Hero Section - Primera impresión con video de fondo
+// Inspiración: Normal Computing - Minimalista, espacioso, impactante
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  <!-- Video Background -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover"
+    poster="https://hydro-charger.com/wp-content/uploads/2019/12/hydro-charguer-14_webshop-1.jpg"
+  >
+    <source src="https://hydro-charger.com/wp-content/uploads/2019/12/hidrocharger.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Overlay con gradiente y toque de color -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0c1220]/80 via-[#0c1220]/50 to-[#0c1220]/90"></div>
+  
+  <!-- Glow de acento sutil -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
+    <!-- Logo SWI-TEC -->
+    <div class="mb-10 animate-fade-in">
+      <div class="relative inline-block">
+        <img 
+          src="/img/swi-tec.png" 
+          alt="SWI-TEC" 
+          class="h-12 sm:h-14 md:h-16 w-auto drop-shadow-lg"
+        />
+        <!-- Glow behind logo -->
+        <div class="absolute inset-0 blur-xl bg-cyan/20 -z-10 scale-150"></div>
+      </div>
+    </div>
+
+    <!-- Headline Principal -->
+    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 max-w-5xl leading-[1.05] tracking-tight animate-slide-up">
+      Energía infinita<br class="hidden sm:block" />
+      <span class="text-gradient">mientras navegas</span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl leading-relaxed animate-slide-up" style="animation-delay: 0.1s;">
+      El hidrogenerador que transforma el movimiento del agua en electricidad para tu velero
+    </p>
+
+    <!-- CTA -->
+    <a
+      href="#concepto"
+      class="group inline-flex items-center gap-3 text-lg font-medium hover:text-cyan transition-colors duration-300 animate-slide-up"
+      style="animation-delay: 0.2s;"
+    >
+      Descubre cómo funciona
+      <svg 
+        class="w-5 h-5 animate-bounce group-hover:translate-y-1 transition-transform" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in" style="animation-delay: 0.5s;">
+    <div class="w-7 h-12 border-2 border-white/30 rounded-full flex justify-center p-2">
+      <div class="w-1.5 h-3 bg-white rounded-full animate-bounce"></div>
+    </div>
+  </div>
+
+  <!-- Gradiente inferior para transición suave -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent z-[5]"></div>
+</section>
+
+<style>
+  /* Asegurar que el video cubra todo */
+  video {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bounce {
+      animation: none;
+    }
+  }
+</style>
+

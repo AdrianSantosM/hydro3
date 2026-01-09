@@ -1,0 +1,132 @@
+---
+// Especificaciones Técnicas - Información para decisión de compra
+// Cards organizadas por categorías
+
+interface SpecCategory {
+  title: string;
+  icon: string;
+  specs: { label: string; value: string }[];
+}
+
+const categories: SpecCategory[] = [
+  {
+    title: "Performance",
+    icon: "⚡",
+    specs: [
+      { label: "Potencia de salida", value: "50-500W" },
+      { label: "Velocidad mínima", value: "3 nudos" },
+      { label: "Corriente 12V", value: "Hasta 20A" },
+      { label: "Corriente 24V", value: "Hasta 20A" },
+      { label: "Voltaje carga", value: "13.8-15V" }
+    ]
+  },
+  {
+    title: "Construcción",
+    icon: "🔧",
+    specs: [
+      { label: "Peso total", value: "8 kg" },
+      { label: "Dimensiones", value: "90×28×8 cm" },
+      { label: "Diámetro hélice", value: "35 cm" },
+      { label: "Material", value: "Acero 316" },
+      { label: "Cable incluido", value: "4m × 2.5mm²" }
+    ]
+  },
+  {
+    title: "Control Inteligente",
+    icon: "📱",
+    specs: [
+      { label: "Control remoto", value: "App Android" },
+      { label: "Conexión", value: "Bluetooth" },
+      { label: "Monitorización", value: "V, A, Ah, T°, GPS" },
+      { label: "Consumo activo", value: "30-40 mA" },
+      { label: "Consumo apagado", value: "0 mA" }
+    ]
+  },
+  {
+    title: "Compatibilidad",
+    icon: "🔌",
+    specs: [
+      { label: "Sistema 12V", value: "Mín. 200 Ah" },
+      { label: "Sistema 24V", value: "Mín. 200 Ah" },
+      { label: "Baterías litio", value: "Sí*" },
+      { label: "Detección", value: "Auto 12V/24V" },
+      { label: "Solar integrado", value: "Hasta 400W" }
+    ]
+  },
+  {
+    title: "Operación",
+    icon: "🌡️",
+    specs: [
+      { label: "Temperatura", value: "-10°C a +50°C" },
+      { label: "Profundidad mín.", value: "30 cm" },
+      { label: "Escora máxima", value: "±25°" },
+      { label: "Garantía", value: "24 meses" },
+      { label: "Límite garantía", value: "8,000 millas" }
+    ]
+  },
+  {
+    title: "Incluido",
+    icon: "📦",
+    specs: [
+      { label: "Generador", value: "✓" },
+      { label: "Controlador", value: "✓" },
+      { label: "Cableado", value: "4m incluido" },
+      { label: "Manual", value: "ES/EN/DE" },
+      { label: "App Android", value: "Gratis" }
+    ]
+  }
+];
+---
+
+<section id="specs" class="py-20 lg:py-28 px-4 bg-section relative overflow-hidden">
+  <!-- Glow decorativo -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan/5 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-16 animate-on-scroll">
+      <span class="text-cyan text-sm font-semibold tracking-wider uppercase mb-4 block">
+        Especificaciones
+      </span>
+      <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
+        Ingeniería de precisión
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Construcción marina premium. Materiales de máxima calidad.
+      </p>
+    </div>
+
+    <!-- Grid de Specs -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((category, index) => (
+        <div 
+          class="bg-gray-900/30 border border-gray-700/50 rounded-2xl p-6 lg:p-8 hover:border-cyan/40 hover:bg-gray-900/50 transition-all duration-300 animate-on-scroll backdrop-blur-sm"
+          style={`animation-delay: ${index * 0.05}s`}
+        >
+          <!-- Header -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl">{category.icon}</span>
+            <h3 class="text-xl font-semibold text-cyan">{category.title}</h3>
+          </div>
+          
+          <!-- Specs List -->
+          <dl class="space-y-4">
+            {category.specs.map((spec) => (
+              <div class="flex justify-between items-center">
+                <dt class="text-gray-400 text-sm">{spec.label}</dt>
+                <dd class="font-semibold text-right">{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+
+    <!-- Nota sobre litio -->
+    <p class="text-center text-gray-500 text-sm mt-8 animate-on-scroll">
+      * Baterías de litio: Compatible con relé de corte. Consultar fabricante de baterías para configuración óptima.
+    </p>
+
+  </div>
+</section>
+

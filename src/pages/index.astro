@@ -1,0 +1,57 @@
+---
+/**
+ * Hydro Charger Landing Page
+ * 
+ * Landing page minimalista y premium para el hidrogenerador SWI-TEC.
+ * Inspirada en Normal Computing - espacioso, tipografía grande, animaciones sutiles.
+ * 
+ * @author SWI-TEC
+ * @version 1.0
+ */
+
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ConceptSection from '../components/ConceptSection.astro';
+import ProductGallery from '../components/ProductGallery.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import PerformanceChart from '../components/PerformanceChart.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Layout>
+  <!-- Header con navegación -->
+  <Header />
+  
+  <main>
+    <!-- Hero: Primera impresión con video -->
+    <Hero />
+    
+    <!-- Concepto: Explicación rápida -->
+    <ConceptSection />
+    
+    <!-- Producto: Galería con tabs (generador, monturas, controlador) -->
+    <ProductGallery />
+    
+    <!-- Comparativa: Por qué es mejor -->
+    <ComparisonTable />
+    
+    <!-- Rendimiento: Datos reales -->
+    <PerformanceChart />
+    
+    <!-- Testimonios -->
+    <CaseStudies />
+    
+    <!-- CTA Final: Conversión -->
+    <FinalCTA />
+  </main>
+  
+  <!-- Footer -->
+  <Footer />
+  
+  <!-- WhatsApp Button -->
+  <WhatsAppButton />
+</Layout>

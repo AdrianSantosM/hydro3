@@ -1,0 +1,102 @@
+---
+// Casos Reales / Testimonios - Social proof con fotos reales
+// Grid 2x2 con overlays de información
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  location: string;
+  highlight: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote: "Baterías siempre cargadas. Este viaje no habría sido posible sin él.",
+    author: "Tommy",
+    location: "East London, Sudáfrica",
+    highlight: "30,000 millas navegadas"
+  },
+  {
+    quote: "A 5-6 nudos genera suficiente para nevera, electrónica y piloto automático.",
+    author: "Carlos M.",
+    location: "Mallorca",
+    highlight: "8 meses de uso intensivo"
+  },
+  {
+    quote: "A 6 nudos generábamos 200W constantes. La batería nunca bajó del 80%.",
+    author: "James T.",
+    location: "Cornwall, UK",
+    highlight: "Travesía atlántica 2024"
+  },
+  {
+    quote: "El Hydro Charger + paneles solares nos da energía 24/7. Somos independientes.",
+    author: "Marina & Carlos",
+    location: "Ibiza",
+    highlight: "2 años viviendo a bordo"
+  }
+];
+
+const stats = [
+  { value: "95%", label: "Recomiendan Hydro Charger" },
+  { value: "20+", label: "Años en el mercado" },
+  { value: "1000+", label: "Unidades instaladas" },
+  { value: "24", label: "Meses de garantía" }
+];
+---
+
+<section id="testimonios" class="py-20 lg:py-28 px-4">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-16 animate-on-scroll">
+      <span class="text-cyan text-sm font-semibold tracking-wider uppercase mb-4 block">
+        Casos reales
+      </span>
+      <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
+        Probado en todo tipo de travesías
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Miles de millas navegadas con Hydro Charger
+      </p>
+    </div>
+
+    <!-- Grid de Testimonios -->
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8 mb-20">
+      {testimonials.map((item, index) => (
+        <div 
+          class="bg-gray-900/20 border-l-2 border-cyan/40 pl-8 pr-6 py-8 lg:py-10 transition-all duration-300 animate-on-scroll hover:bg-gray-900/30"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Quote -->
+          <blockquote class="font-serif text-xl lg:text-2xl mb-8 leading-relaxed text-gray-200">
+            "{item.quote}"
+          </blockquote>
+          
+          <!-- Author & Highlight -->
+          <div class="flex flex-col gap-1">
+            <cite class="text-white not-italic font-medium">
+              {item.author}
+            </cite>
+            <span class="text-gray-500 text-sm">{item.location}</span>
+            <span class="text-cyan/70 text-sm mt-2">{item.highlight}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {stats.map((stat, index) => (
+        <div 
+          class="text-center p-6 bg-gray-900/30 rounded-2xl border border-cyan/10 animate-on-scroll backdrop-blur-sm"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <div class="text-4xl lg:text-5xl font-bold text-cyan mb-2">{stat.value}</div>
+          <div class="text-gray-400 text-sm lg:text-base">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+

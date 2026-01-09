@@ -1,0 +1,129 @@
+---
+// Galería Multimedia - Imágenes y videos del producto en uso
+// Grid responsive con lightbox effect
+
+const media = [
+  {
+    type: 'image',
+    src: '/img/gallery/hydro-1.jpg',
+    alt: 'Hydro Charger instalado en velero',
+    caption: 'Instalación típica en espejo de popa'
+  },
+  {
+    type: 'image',
+    src: '/img/gallery/hydro-2.jpg',
+    alt: 'Hydro Charger en navegación',
+    caption: 'Generando electricidad a 5 nudos'
+  },
+  {
+    type: 'video',
+    src: '/video/hydro-charger.mp4',
+    poster: '/img/gallery/video-poster.jpg',
+    caption: 'Hydro Charger en acción'
+  },
+  {
+    type: 'image',
+    src: '/img/gallery/hydro-3.jpg',
+    alt: 'Detalle del soporte de péndulo',
+    caption: 'Soporte de péndulo auto-nivelante'
+  },
+  {
+    type: 'image',
+    src: '/img/gallery/hydro-4.jpg',
+    alt: 'Controlador con app',
+    caption: 'Monitorización desde el móvil'
+  },
+  {
+    type: 'image',
+    src: '/img/gallery/hydro-5.jpg',
+    alt: 'Hydro Charger bajo el agua',
+    caption: 'Vista submarina del generador'
+  }
+];
+---
+
+<section id="galeria" class="py-20 lg:py-28 px-4 bg-section">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-16 animate-on-scroll">
+      <span class="text-cyan text-sm font-semibold tracking-wider uppercase mb-4 block">
+        Galería
+      </span>
+      <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
+        El Hydro Charger en acción
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Imágenes y videos de instalaciones reales
+      </p>
+    </div>
+
+    <!-- Grid de Medios -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+      {media.map((item, index) => (
+        <div 
+          class={`relative group overflow-hidden rounded-2xl bg-gray-900/30 border border-gray-800/50 hover:border-cyan/40 transition-all duration-300 animate-on-scroll ${index === 2 ? 'col-span-2 md:col-span-1' : ''}`}
+          style={`animation-delay: ${index * 0.05}s`}
+        >
+          {item.type === 'video' ? (
+            <div class="aspect-video">
+              <video
+                class="w-full h-full object-cover"
+                poster={item.poster}
+                muted
+                loop
+                playsinline
+              >
+                <source src={item.src} type="video/mp4" />
+              </video>
+              <!-- Play button overlay -->
+              <div class="absolute inset-0 flex items-center justify-center bg-dark/30 group-hover:bg-dark/10 transition-colors">
+                <div class="w-16 h-16 rounded-full bg-cyan/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6 text-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div class="aspect-square">
+              <img 
+                src={item.src} 
+                alt={item.alt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          )}
+          
+          <!-- Caption overlay -->
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            <p class="text-sm text-white">{item.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Nota -->
+    <p class="text-center text-gray-500 text-sm mt-8 animate-on-scroll">
+      ¿Tienes fotos de tu instalación? Envíalas a info@swi-tec.com
+    </p>
+
+  </div>
+</section>
+
+<script>
+  // Play video on hover
+  const videoContainers = document.querySelectorAll('#galeria [data-video]');
+  videoContainers.forEach(container => {
+    const video = container.querySelector('video');
+    if (video) {
+      container.addEventListener('mouseenter', () => video.play());
+      container.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+</script>
+

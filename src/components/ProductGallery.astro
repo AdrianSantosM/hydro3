@@ -1,0 +1,316 @@
+---
+// Galería de Producto - Fotos, videos y descripción detallada
+// Con tabs para navegar sin scroll
+
+const tabs = [
+  { id: 'generador', label: 'Generador' },
+  { id: 'soportes', label: 'Soportes' },
+  { id: 'recambios', label: 'Recambios' },
+];
+
+const recambios = [
+  {
+    name: 'Bolsa de transporte',
+    code: '7112',
+    price: '€151,25',
+    priceExport: '€125,00',
+    image: 'https://placehold.co/300x200/1a1a2e/00d9ff?text=Bolsa'
+  },
+  {
+    name: 'Pantalla remota 12V',
+    code: '7108',
+    price: '€94,38',
+    priceExport: '€78,00',
+    image: '/img/7108.png'
+  },
+  {
+    name: 'Protección hélice (juego de 3)',
+    code: '7113',
+    price: '€38,72',
+    priceExport: '€32,00',
+    image: 'https://placehold.co/300x200/1a1a2e/00d9ff?text=Protector'
+  },
+  {
+    name: 'Regulador Universal con App',
+    code: '7107',
+    price: '€465,85',
+    priceExport: '€385,00',
+    image: 'https://placehold.co/300x200/1a1a2e/00d9ff?text=Regulador+App'
+  },
+  {
+    name: 'Regulador para Hidrogenerador',
+    code: '7104',
+    price: '€405,05',
+    priceExport: '€334,75',
+    image: 'https://placehold.co/300x200/1a1a2e/00d9ff?text=Regulador'
+  },
+  {
+    name: 'Hélice para Hidrogenerador',
+    code: '7103',
+    price: 'Consultar',
+    priceExport: '',
+    image: 'https://placehold.co/300x200/1a1a2e/00d9ff?text=Helice'
+  }
+];
+
+const monturas = [
+  {
+    id: 'oscilante',
+    name: 'Soporte de Péndulo',
+    code: '7111',
+    price: '€297,66',
+    priceExport: '€246,00',
+    description: 'Oscila automáticamente hasta 25° a cada lado. Mantiene el generador siempre perpendicular al agua.',
+    features: ['Gira hasta 180°', 'Oscila ±25° automático', 'Bloqueo automático'],
+    image: 'https://test.hydro-charger.com/images/7111.png',
+    recommended: true,
+    ideal: 'Navegación con escora / Alta mar',
+    weight: '1.6 kg'
+  },
+  {
+    id: 'plataforma',
+    name: 'Soporte Angular Extraíble',
+    code: '7110',
+    price: '€196,02',
+    priceExport: '€162,00',
+    description: 'Extraíble para plataforma de baño. Cuando no se usa, la plataforma queda libre excepto por la placa de montaje.',
+    features: ['Liberación rápida', 'Plataforma libre', 'Ideal catamaranes'],
+    image: 'https://test.hydro-charger.com/images/7110.png',
+    recommended: false,
+    ideal: 'Catamaranes y barcos con plataforma de baño',
+    weight: '2.1 kg'
+  },
+  {
+    id: 'fijo',
+    name: 'Soporte Fijo para Espejo de Popa',
+    code: '7109',
+    price: '€118,58',
+    priceExport: '€98,00',
+    description: 'Soporte independiente para espejo de popa. Se suministra con contraplaca de refuerzo.',
+    features: ['Incluye contraplaca', 'Montaje sencillo', 'Navegación costera'],
+    image: '/img/7109.png',
+    recommended: false,
+    ideal: 'Navegación costera',
+    weight: '1 kg'
+  }
+];
+---
+
+<section id="producto" class="py-20 lg:py-28 px-4">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-12 animate-on-scroll">
+      <span class="text-cyan text-sm font-semibold tracking-wider uppercase mb-4 block">
+        El producto
+      </span>
+      <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
+        Conoce el Hydro Charger
+      </h2>
+    </div>
+
+    <!-- Tabs Container -->
+    <div id="product-tabs" class="animate-on-scroll">
+      
+      <!-- Tab Buttons -->
+      <div class="flex justify-center mb-10">
+        <div class="inline-flex bg-gray-900/50 rounded-lg p-1 border border-gray-700">
+          {tabs.map((tab, index) => (
+            <button
+              data-tab={tab.id}
+              class={`px-6 py-3 text-sm font-medium rounded-md transition-all duration-300 cursor-pointer ${index === 0 ? 'bg-cyan text-dark' : 'text-gray-400 hover:text-white'}`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tab Content: Generador -->
+      <div id="tab-generador" class="tab-content">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          
+          <!-- Imagen del producto -->
+          <div class="relative">
+            <img 
+              src="/img/hydro-charger.png" 
+              alt="Hydro Charger Universal"
+              class="w-full h-auto max-h-[550px] object-contain"
+            />
+          </div>
+
+          <!-- Info -->
+          <div>
+            <h3 class="font-serif text-3xl lg:text-4xl mb-4">
+              Hydro Charger Universal
+            </h3>
+            
+            <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+              Generador sencillo pero potente, ideal tanto para navegación costera como para alta mar. 
+              Produce electricidad a partir de solo 3 nudos.
+            </p>
+            
+            <!-- Specs grid -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="border-l-2 border-cyan/50 pl-4">
+                <div class="text-xl font-semibold text-white">8 kg</div>
+                <div class="text-gray-500 text-sm">Peso total</div>
+              </div>
+              <div class="border-l-2 border-cyan/50 pl-4">
+                <div class="text-xl font-semibold text-white">90 cm</div>
+                <div class="text-gray-500 text-sm">Longitud</div>
+              </div>
+              <div class="border-l-2 border-cyan/50 pl-4">
+                <div class="text-xl font-semibold text-white">3 nudos</div>
+                <div class="text-gray-500 text-sm">Velocidad mínima</div>
+              </div>
+              <div class="border-l-2 border-cyan/50 pl-4">
+                <div class="text-xl font-semibold text-white">12V / 24V</div>
+                <div class="text-gray-500 text-sm">Versiones disponibles</div>
+              </div>
+            </div>
+            
+            <p class="text-gray-500 text-sm mb-8">
+              Se entrega completamente ensamblado y listo para instalar. Incluye hidrogenerador, kit de conectores y regulador.
+            </p>
+
+            <div class="border-t border-gray-800 pt-6">
+              <div class="mb-4">
+                <span class="text-gray-500 text-sm">Desde</span>
+                <div class="text-3xl font-bold text-white">€2.093,00</div>
+              </div>
+              
+              <a 
+                href="https://swi-tec.com/es/producto/hidrogenerador-universal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block w-full sm:w-auto text-center px-8 py-4 bg-cyan hover:bg-cyan/90 text-dark font-semibold rounded-lg transition-colors"
+              >
+                Comprar ahora
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Soportes -->
+      <div id="tab-soportes" class="tab-content hidden">
+        <p class="text-center text-gray-400 mb-10 max-w-2xl mx-auto">
+          Elige el soporte según tu tipo de navegación y embarcación
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          {monturas.map((m) => (
+            <div class={`relative flex flex-col bg-gray-900/30 rounded-2xl p-6 border transition-all duration-300 hover:border-cyan/40 ${m.recommended ? 'border-cyan/30' : 'border-gray-800/50'}`}>
+              {m.recommended && (
+                <div class="absolute -top-3 left-6 px-3 py-1 bg-cyan text-dark text-xs font-semibold rounded-full">
+                  Recomendado
+                </div>
+              )}
+              
+              <img 
+                src={m.image} 
+                alt={m.name}
+                class="w-full h-56 object-contain mb-6"
+                loading="lazy"
+              />
+              
+              <div class="flex items-baseline justify-between mb-3">
+                <h4 class="font-semibold text-lg">{m.name}</h4>
+                <span class="text-cyan font-medium">{m.price}</span>
+              </div>
+              
+              <p class="text-gray-400 text-sm mb-2">{m.description}</p>
+              <p class="text-cyan/70 text-xs mb-2">Export: {m.priceExport}</p>
+              <p class="text-gray-500 text-xs mb-4">Ideal: {m.ideal} · {m.weight}</p>
+              
+              <ul class="space-y-2 flex-1">
+                {m.features.map((f) => (
+                  <li class="text-gray-500 text-sm flex items-center gap-2">
+                    <span class="w-1 h-1 bg-cyan rounded-full"></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a 
+                href="https://swi-tec.com/es/categoria-producto/energia/soportes-para-hidrogenerador-universal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center py-2 px-4 bg-cyan/10 hover:bg-cyan/20 text-cyan text-sm font-medium rounded-lg transition-colors mt-4"
+              >
+                Ver producto
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tab Content: Recambios -->
+      <div id="tab-recambios" class="tab-content hidden">
+        <p class="text-center text-gray-400 mb-10 max-w-2xl mx-auto">
+          Accesorios y repuestos originales para tu Hydro Charger
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          {recambios.map((r) => (
+            <div class="relative bg-gray-900/30 rounded-2xl p-6 border border-gray-800/50 transition-all duration-300 hover:border-cyan/40">
+              <img 
+                src={r.image} 
+                alt={r.name}
+                class="w-full h-56 object-contain mb-6"
+                loading="lazy"
+              />
+              
+              <div class="flex items-baseline justify-between mb-3">
+                <h4 class="font-semibold text-lg">{r.name}</h4>
+                <span class="text-cyan font-medium">{r.price}</span>
+              </div>
+              
+              <p class="text-gray-400 text-sm mb-2">Art. Nº {r.code}</p>
+              {r.priceExport && (
+                <p class="text-cyan/70 text-xs mb-4">Export: {r.priceExport}</p>
+              )}
+
+              <a 
+                href="https://swi-tec.com/es/categoria-producto/energia/recambios-para-hidrogenerador-universal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center py-2 px-4 bg-cyan/10 hover:bg-cyan/20 text-cyan text-sm font-medium rounded-lg transition-colors"
+              >
+                Ver producto
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabButtons = document.querySelectorAll('[data-tab]');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      
+      // Update buttons
+      tabButtons.forEach(btn => {
+        btn.classList.remove('bg-cyan', 'text-dark');
+        btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/50');
+      });
+      button.classList.add('bg-cyan', 'text-dark');
+      button.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/50');
+      
+      // Update content
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(`tab-${tabId}`)?.classList.remove('hidden');
+    });
+  });
+</script>
+
