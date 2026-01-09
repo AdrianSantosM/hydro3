@@ -130,13 +130,27 @@ const monturas = [
       <div id="tab-generador" class="tab-content">
         <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           
-          <!-- Imagen del producto -->
-          <div class="relative">
-            <img 
-              src="/img/hydro-charger.png" 
-              alt="Hydro Charger Universal"
-              class="w-full h-auto max-h-[550px] object-contain"
-            />
+          <!-- Visor 3D del producto -->
+          <div class="relative aspect-square bg-gray-900/30 rounded-2xl border border-gray-800 overflow-hidden">
+            <model-viewer
+              src="/3d/7111_02_V3.glb"
+              alt="Hydro Charger Universal 3D"
+              auto-rotate
+              camera-controls
+              camera-orbit="45deg 70deg auto"
+              shadow-intensity="1"
+              exposure="1"
+              shadow-softness="1"
+              environment-image="neutral"
+              style="width: 100%; height: 100%; background-color: transparent;"
+            >
+              <div slot="progress-bar" class="absolute bottom-0 left-0 right-0 h-1 bg-gray-800">
+                <div class="h-full bg-cyan transition-all duration-300" style="width: var(--progress, 0%);"></div>
+              </div>
+            </model-viewer>
+            <div class="absolute bottom-4 left-4 text-xs text-gray-500 pointer-events-none">
+              Arrastra para rotar · Scroll para zoom
+            </div>
           </div>
 
           <!-- Info -->
@@ -288,6 +302,9 @@ const monturas = [
     </div>
   </div>
 </section>
+
+<!-- Model Viewer Library -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 
 <script>
   const tabButtons = document.querySelectorAll('[data-tab]');
