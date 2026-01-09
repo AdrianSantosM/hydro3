@@ -3,17 +3,20 @@
 // Inspiración: Normal Computing - Minimalista, espacioso, impactante
 ---
 
-<section class="relative h-screen w-full overflow-hidden">
+<section class="relative h-screen w-full overflow-hidden bg-[#0a0a0a]">
+  <!-- Fondo sólido mientras carga el video -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0c1220] to-[#0a0a0a]"></div>
+  
   <!-- Video Background -->
   <video
+    id="hero-video"
     autoplay
     muted
     loop
     playsinline
-    class="absolute inset-0 w-full h-full object-cover"
-    poster="https://hydro-charger.com/wp-content/uploads/2019/12/hydro-charguer-14_webshop-1.jpg"
+    class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
   >
-    <source src="https://hydro-charger.com/wp-content/uploads/2019/12/hidrocharger.mp4" type="video/mp4" />
+    <source src="/video/hydro-hero.mp4" type="video/mp4" />
   </video>
 
   <!-- Overlay con gradiente y toque de color -->
@@ -26,15 +29,11 @@
   <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
     <!-- Logo SWI-TEC -->
     <div class="mb-10 animate-fade-in">
-      <div class="relative inline-block">
-        <img 
-          src="/img/swi-tec.png" 
-          alt="SWI-TEC" 
-          class="h-12 sm:h-14 md:h-16 w-auto drop-shadow-lg"
-        />
-        <!-- Glow behind logo -->
-        <div class="absolute inset-0 blur-xl bg-cyan/20 -z-10 scale-150"></div>
-      </div>
+      <img 
+        src="/img/swi-tec.png" 
+        alt="SWI-TEC" 
+        class="h-12 sm:h-14 md:h-16 w-auto"
+      />
     </div>
 
     <!-- Headline Principal -->
@@ -90,4 +89,20 @@
     }
   }
 </style>
+
+<script>
+  // Mostrar video solo cuando esté listo para reproducir
+  const video = document.getElementById('hero-video') as HTMLVideoElement;
+  if (video) {
+    video.addEventListener('canplaythrough', () => {
+      video.classList.remove('opacity-0');
+      video.classList.add('opacity-100');
+    });
+    // Fallback si ya está cargado
+    if (video.readyState >= 3) {
+      video.classList.remove('opacity-0');
+      video.classList.add('opacity-100');
+    }
+  }
+</script>
 
